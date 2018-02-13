@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import swal from 'sweetalert';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -56,7 +57,7 @@ class NewCategoryitem extends Component {
       // store the token
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
-        alert("token not found, please login again");
+        swal("Token not found, please login again","", "error");
         // redirect to login
       }
       else {
@@ -88,15 +89,14 @@ class NewCategoryitem extends Component {
       // _this.setState({
       //     "response": data
       // })
-      console.log(data);
+      // console.log(data);
+      swal("Recipe Saved","", "success");
       if(data.status === "success"){
-        // login was successful
-          alert(data.message);
+        // login was successful         
           _this.setState({
             error: ""
           })
           // store token in the browser localStorage
-          window.location.reload();
       }
       else{
         _this.setState({

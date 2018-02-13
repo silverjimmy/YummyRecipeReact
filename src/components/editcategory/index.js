@@ -3,7 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import swal from 'sweetalert';
+
 
 
 /**
@@ -51,17 +52,16 @@ class Editcategory extends Component {
     if (this.state.name === "" || this.state.description === "") {
         // error empty inputs
     }
-    NotificationManager.info('Info message');
     this.updatecategory(category_id);
     this.setState({open: false});
-
+    swal("Category has been Updated","", "success");
   }
   componentDidMount(){
     if(typeof(localStorage) !==  undefined){
       // store the token
         const token = localStorage.getItem("yummy_token");
         if (token === null) {
-          alert("token not found, please login again");
+          swal("Token not found, please login again","", "error");
         }
         else {
           //console.log("token", token);

@@ -12,7 +12,8 @@
     "react-scripts": "1.0.11",
     "react-search": "^2.0.5",
     "react-sidebar": "^2.3.2",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "sweetalert": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

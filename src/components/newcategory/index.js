@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-
-
+import swal from 'sweetalert';
+import { browserHistory } from "react-router";
 
 class NewCategory extends Component {
   constructor(props){
@@ -44,8 +44,11 @@ class NewCategory extends Component {
       open: false
     });
     if (this.state.name === "" || this.state.description === "") {
-
     }
+    swal("Category Deleted","", "success");
+    browserHistory.push({
+      pathname: "/dashboard"
+    });
     this.addcategory();
   }
 
@@ -54,7 +57,8 @@ class NewCategory extends Component {
       // store the token
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
-        alert("token not found, please login again");
+        swal("Token not found, please login again","", "error");
+        
       }
       else {
         console.log("token", token);
@@ -91,7 +95,6 @@ class NewCategory extends Component {
           error: data.message,
           _open: true
         })
-        window.location.reload();
       }
   }).catch((err) =>{
       console.error(err)
@@ -126,14 +129,6 @@ class NewCategory extends Component {
       <a className="logo">
         <span className="symbol"><img src={process.env.PUBLIC_URL + "/images/add.svg"} onClick={this.handleOpen} className="App-logo" alt="Logo " /></span><span className="title"></span>
       </a>
-      <Dialog
-        actions={action}
-        modal={false}
-        open={this.state._open}
-        onRequestClose={this.handleClose}
-      >
-        {this.state.error !== "" && this.state.error}
-      </Dialog>
         <Dialog
           title="New Category"
           actions={actions}
@@ -143,8 +138,6 @@ class NewCategory extends Component {
         >
           <form method="POST" action="">
             <div className="error">
-
-
            </div>
             <div>
               <TextField

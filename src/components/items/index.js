@@ -5,6 +5,7 @@ import RecipeView from '../itemsview';
 import NewCategoryitem from '../newRecipe';
 import DeleteCategory from '../deleteCategory'
 import Editcategory from "../editcategory";
+import swal from 'sweetalert';
 
 class Items extends Component{
   constructor(props){
@@ -20,7 +21,7 @@ class Items extends Component{
       // store the token
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
-        alert("token not found, please login again");
+        swal("Token not found, please login again","", "error");
         // redirect to login
       }
       else {

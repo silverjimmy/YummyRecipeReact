@@ -3,8 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
-
+import swal from 'sweetalert';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -54,7 +53,7 @@ class EditRecipe extends Component {
     }
     this.updatecategory(category_id, item_id);
     this.setState({open: false});
-    NotificationManager.info('Info message');
+    swal("Recipe has been updated","", "success");
     
   }
   componentDidMount(){
@@ -62,7 +61,8 @@ class EditRecipe extends Component {
       // store the token
         const token = localStorage.getItem("yummy_token");
         if (token === null) {
-          alert("token not found, please login again");
+          swal("Token not found, please login again","", "error");
+
         }
         else {
           //console.log("token", token);
@@ -138,7 +138,6 @@ class EditRecipe extends Component {
               <TextField
                   name="name"
                   hintText="name"
-                  value={this.state.name}
                   onChange={this.handleNameChange}/>
             </div>
             <div>

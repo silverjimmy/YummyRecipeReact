@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
-
+import swal from 'sweetalert';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -44,6 +44,8 @@ class DeleteItem extends Component {
     if (this.state.name === "" || this.state.description === "") {
         // error empty inputs
     }
+
+    swal("Recipe Deleted","", "info");
     this.deletecategory(category_id, item_id);
     this.setState({open: false});
   }
@@ -51,7 +53,7 @@ class DeleteItem extends Component {
     if(typeof(localStorage) !==  undefined){
         const token = localStorage.getItem("yummy_token");
         if (token === null) {
-          alert("token not found, please login again");
+          swal("Token not found, please login again","", "error");
         }
         else {
           this.setState({

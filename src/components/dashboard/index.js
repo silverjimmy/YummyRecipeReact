@@ -8,6 +8,7 @@ import "./dashboard.css";
 import NewCategory from '../newcategory';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import swal from 'sweetalert';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Dashboard extends Component {
     if (typeof(localStorage) !== undefined) {
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
-        this.setState({error: "token not found, please login again", open: true})
+          swal("Token not found, please login again","", "error");
       } else {
         this.setState({
           token: token
