@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
 /**
@@ -50,7 +51,7 @@ class Editcategory extends Component {
     if (this.state.name === "" || this.state.description === "") {
         // error empty inputs
     }
-    window.location.reload();
+    NotificationManager.info('Info message');
     this.updatecategory(category_id);
     this.setState({open: false});
 
@@ -102,7 +103,6 @@ class Editcategory extends Component {
               error: data.message,
               // open: true
             })
-            window.location.reload();
           }
       }).catch((err) =>{
           console.error(err)
@@ -127,7 +127,7 @@ class Editcategory extends Component {
     return (
       <div>
         <Dialog
-          title="Edit Recipe"
+          title="Edit Category"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -149,7 +149,6 @@ class Editcategory extends Component {
                   onChange={this.handleNameChange} />
             </div>
           </form>
-
 
         </Dialog>
         <span className="symbol"><img src={process.env.PUBLIC_URL + "/images/edit.svg"} onClick={(event) => this.handleOpen(event)}  /></span>

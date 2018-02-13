@@ -19,7 +19,7 @@ class DeleteItem extends Component {
       "open": false,
       "erroropen": false,
       "token": "",
-      "dialog_msg": "Are you sure you want to delete this Item?",
+      "dialog_msg": "Are you sure you want to delete this Recipe?",
       "items": []
     }
 
@@ -88,7 +88,6 @@ class DeleteItem extends Component {
               error: data.message,
               open: true
             })
-            window.location.reload();
           }
       }).catch((err) =>{
           console.error(err)

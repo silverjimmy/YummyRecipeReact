@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
 /**
@@ -53,7 +54,8 @@ class EditRecipe extends Component {
     }
     this.updatecategory(category_id, item_id);
     this.setState({open: false});
-
+    NotificationManager.info('Info message');
+    
   }
   componentDidMount(){
     if(typeof(localStorage) !==  undefined){
@@ -117,14 +119,14 @@ class EditRecipe extends Component {
         label="Save"
         primary={true}
         keyboardFocused={true}
-        onClick={(event) => this.handleSubmit(event, this.props.category_id, this.props.item_id)}
+        onClick={(event) => this.handleSubmit(event, this.props.category_id, this.props.item_id,'info')}
       />,
     ];
 
     return (
       <div>
         <Dialog
-          title="Edit Category"
+          title="Edit Recipe"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -136,6 +138,7 @@ class EditRecipe extends Component {
               <TextField
                   name="name"
                   hintText="name"
+                  value={this.state.name}
                   onChange={this.handleNameChange}/>
             </div>
             <div>
