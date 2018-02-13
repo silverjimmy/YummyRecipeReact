@@ -9,15 +9,12 @@ class NewCategory extends Component {
   constructor(props){
       super(props);
       this.state = {
-        "name": "",
-        "description": "",
         "error": "",
         "open": false,
         "_open": false,
         "token": ""
       }
       this.handleNameChange = this.handleNameChange.bind(this);
-      this.handleDescChange = this.handleDescChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -34,17 +31,11 @@ class NewCategory extends Component {
   handleNameChange(event){
 
     this.setState({
-      name: event.target.value
+      [event.target.name]: event.target.value
     });
 
   }
   
-  handleDescChange(event){
-
-    this.setState({
-      description: event.target.value
-    });
-  }
 
   handleSubmit(event){
 
@@ -166,7 +157,7 @@ class NewCategory extends Component {
                   type="Description"
                   name="description"
                   hintText="Description"
-                  onChange={this.handleDescChange} />
+                  onChange={this.handleNameChange} />
             </div>
           </form>
         </Dialog>

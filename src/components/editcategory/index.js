@@ -22,7 +22,6 @@ class Editcategory extends Component {
       "items": []
     }
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.handlePassChange = this.handlePassChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updatecategory = this.updatecategory.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
@@ -40,18 +39,7 @@ class Editcategory extends Component {
   handleNameChange(event){
     // update the state with new value from input
     this.setState({
-      name: event.target.value
-    });
-    // this.setState({
-    //   [event.target.name]: event.target.value
-    // });
-
-  }
-
-  handlePassChange(event){
-    // update the state with new value from input
-    this.setState({
-      description: event.target.value
+      [event.target.name]: event.target.value
     });
   }
 
@@ -132,7 +120,7 @@ class Editcategory extends Component {
         label="Save"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={(event) => this.handleSubmit(event, this.props.category_id)}
       />,
     ];
 
@@ -158,12 +146,8 @@ class Editcategory extends Component {
                   type="Description"
                   name="description"
                   hintText="Description"
-                  onChange={this.handlePassChange} />
+                  onChange={this.handleNameChange} />
             </div>
-            <FlatButton
-                label="ADD"
-                type="submit"
-                onClick={(event) => this.handleSubmit(event, this.props.category_id)} />
           </form>
 
 

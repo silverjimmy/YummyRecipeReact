@@ -15,8 +15,6 @@ class NewCategoryitem extends Component {
       super(props);
       // default state
       this.state = {
-        "name": "",
-        "description": "",
         "error": "",
         "open": false,
         "token": ""
@@ -26,7 +24,6 @@ class NewCategoryitem extends Component {
         the value of inside the function scope
        */
       this.handleNameChange = this.handleNameChange.bind(this);
-      this.handlePassChange = this.handlePassChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleOpen = () => {
@@ -40,18 +37,10 @@ class NewCategoryitem extends Component {
   handleNameChange(event){
     // update the state with new value from input
     this.setState({
-      name: event.target.value
+      [event.target.name]: event.target.value
     });
 
   }
-
-  handlePassChange(event){
-    // update the state with new value from input
-    this.setState({
-      description: event.target.value
-    });
-  }
-
   handleSubmit(event){
     // prevent the default browser action
     event.preventDefault();
@@ -131,7 +120,7 @@ class NewCategoryitem extends Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.handleSubmit}
       />,
     ];
 
@@ -163,12 +152,8 @@ class NewCategoryitem extends Component {
                       type="Description"
                       name="description"
                       hintText="Description"
-                      onChange={this.handlePassChange} />
+                      onChange={this.handleNameChange} />
                 </div>
-                <FlatButton
-                    label="ADD"
-                    type="submit"
-                    onClick={this.handleSubmit} />
               </form>
           </div>
         </Dialog>
