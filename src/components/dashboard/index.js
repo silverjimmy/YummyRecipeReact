@@ -77,14 +77,15 @@ class Dashboard extends Component {
 
       if (results != undefined) {
         console.log("res", results);
-        let recipes = results.map((res, i) => {
+        let items = results.map((res, i) => {
           return {id: res.id, title: res.title, description: res.description}
         })
-        _this.setState({"categories": recipes})
+        _this.setState({"categories": items})
 
       }
     });
   }
+  
 
   fetchCategory() {
     const _this = this;
@@ -94,8 +95,8 @@ class Dashboard extends Component {
       method: "GET",
       mode: 'cors',
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
-    }).then((resp) => resp.json()). // Transform the data into json
-    then(function(data) {
+    }).then((resp) => resp.json()) // Transform the data into json
+    .then(function(data) {
       console.log(data);
       _this.setState(
         {
@@ -109,12 +110,16 @@ class Dashboard extends Component {
   }
 
   render() {
-    const actions = [< FlatButton label = "Discard" primary = {
+    const actions = [
+      < FlatButton label = "Discard" 
+      primary = {
         true
       }
       onTouchTap = {
         this.handleClose
-      } />];
+      }
+       />];
+
     return (
 
       <div id="main">
