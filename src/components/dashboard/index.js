@@ -30,6 +30,9 @@ class Dashboard extends Component {
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
           swal("Token not found, please login again","", "error");
+          browserHistory.push({
+            pathname: "/login",
+          });
       } else {
         this.setState({
           token: token
