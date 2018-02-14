@@ -76,13 +76,16 @@ class Dashboard extends Component {
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
     }).then((resp) => resp.json()).then(function(results) {
 
-      if (results != undefined) {
+      if (results !== undefined) {
         console.log("res", results);
-        let items = results.map((res, i) => {
-          return {id: res.id, title: res.title, description: res.description}
+        let items = results.map((res) => {
+          return {
+            id: res.id, 
+            title: res.title, 
+            description: res.description
+          }
         })
         _this.setState({"categories": items})
-
       }
     });
   }

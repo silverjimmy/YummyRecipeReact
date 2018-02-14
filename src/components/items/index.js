@@ -31,6 +31,7 @@ class Items extends Component{
         },() => {
           //console.log(this.props);
           this.fetchCategoryrecipes();
+          console.log('dshjsjdh',this.state.items)
         });
       }
     }
@@ -40,7 +41,7 @@ class Items extends Component{
     console.log(this.props);
     const _this = this;
     const category_id = this.props.params.id;
-    const url = `http://127.0.0.1:5000/category/${category_id}/recipe/`
+    const url = `http://127.0.0.1:5000/category/${category_id}`
     fetch(url, {
       method: "GET",
       mode: 'cors',
@@ -52,9 +53,9 @@ class Items extends Component{
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) {
         // Create and append the li's to the ul\
-        console.log(data.recipes);
+        console.log(data.category.recipes);
         _this.setState({
-            "items": data.recipes
+            "items": data.category.recipes
         });
       }).catch((err) => {
         console.error(err)

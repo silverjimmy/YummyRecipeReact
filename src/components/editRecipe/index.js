@@ -19,9 +19,11 @@ class EditRecipe extends Component {
       "open": false,
       "erroropen": false,
       "token": "",
-      "items": []
+      "items": [],
+      "name":"",
+      "description":"",
     }
-    this.handleNameChange = this.handleNameChange.bind(this);
+    console.log('what!!!!',this.props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updatecategory = this.updatecategory.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
@@ -36,12 +38,14 @@ class EditRecipe extends Component {
     this.setState({open: false});
   };
 
-  handleNameChange(event){
+  handleNameChange = (event) =>{
+    event.preventDefault()
     // update the state with new value from input
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-
+    let field = event.target.name
+    let recipe = this.state
+    recipe[field] = event.target.value
+    this.setState({recipe:recipe})
+    console.log(this.state.name)
   }
 
   handleSubmit(event, category_id, item_id){
@@ -56,7 +60,7 @@ class EditRecipe extends Component {
     swal("Recipe has been updated","", "success");
     
   }
-  componentDidMount(){
+  componentWilMount(){
     if(typeof(localStorage) !==  undefined){
       // store the token
         const token = localStorage.getItem("yummy_token");
@@ -73,8 +77,26 @@ class EditRecipe extends Component {
       }
     }
 
+    componentDidMount(){
+      const _this = this;
+      const url = `http://127.0.0.1:5000/category/${this.props.category_id}/recipe/${this.props.item_id}`;
+      fetch(url, {
+          method: "GET",
+          mode: 'cors',
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization':localStorage.getItem("yummy_token")
+          })
+       })
+       .then(response =>response.json())
+       .then(function(recipe) {
+        console.log(recipe)
+         _this.setState({name:recipe.recipe_name,description:recipe.recipe_description})
+       })}
+
     // make request to the api
     updatecategory(category_id, item_id){
+      this.setState({recipeId:item_id, categoryId:category_id})
 
       const _this = this;
       const url = `http://127.0.0.1:5000/category/${category_id}/recipe/${item_id}`;
@@ -84,13 +106,13 @@ class EditRecipe extends Component {
           mode: 'cors',
           headers: new Headers({
             'Content-Type': 'application/json',
-            'Authorization': this.state.token
+            'Authorization': localStorage.getItem("yummy_token")
           })
        })
       .then((resp) => resp.json()) // Transform the data into json
       .then(function(data) {
         // Create and append the li's to the ul
-        console.log(data);
+        console.log('dfjdfjfjkfx',data);
           if(data.status === "success"){
             // login was successful
               _this.setState({
@@ -137,6 +159,7 @@ class EditRecipe extends Component {
             <div>
               <TextField
                   name="name"
+                  value ={this.state.name}
                   hintText="name"
                   onChange={this.handleNameChange}/>
             </div>
@@ -144,6 +167,7 @@ class EditRecipe extends Component {
               <TextField
                   type="Description"
                   name="description"
+                  value={this.state.description}
                   hintText="Description"
                   onChange={this.handleNameChange} />
             </div>

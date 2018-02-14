@@ -108,7 +108,7 @@ class Login extends Component {
 
         <div>
             <section className="tiles">
-                <article className="style7">
+                <article>
                   <span className="image">
                     <img src={ process.env.PUBLIC_URL + "/images/pic13.jpg"} alt="" />
                   </span>
@@ -146,6 +146,8 @@ class Login extends Component {
                             type="submit"
                             onClick={this.handleSubmit} />
                       </form>
+
+                      
                   </div>
                 </a>
                 </article>
