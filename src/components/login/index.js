@@ -10,8 +10,6 @@ class Login extends Component {
         super(props);
         // default state
         this.state = {
-          "username": "",
-          "password": "",
           "error": "",
           "open": false
         }
@@ -20,7 +18,6 @@ class Login extends Component {
           the value of inside the function scope
          */
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handlePassChange = this.handlePassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -35,16 +32,9 @@ class Login extends Component {
     handleNameChange(event){
       // update the state with new value from input
       this.setState({
-        username: event.target.value
+        [event.target.name]: event.target.value
       });
 
-    }
-
-    handlePassChange(event){
-      // update the state with new value from input
-      this.setState({
-        password: event.target.value
-      });
     }
 
     redirectTo(event, username){
@@ -118,7 +108,7 @@ class Login extends Component {
 
         <div>
             <section className="tiles">
-                <article className="style7">
+                <article>
                   <span className="image">
                     <img src={ process.env.PUBLIC_URL + "/images/pic13.jpg"} alt="" />
                   </span>
@@ -149,13 +139,15 @@ class Login extends Component {
                               type="password"
                               name="password"
                               hintText="password"
-                              onChange={this.handlePassChange} />
+                              onChange={this.handleNameChange} />
                         </div>
                         <FlatButton
                             label="Login"
                             type="submit"
                             onClick={this.handleSubmit} />
                       </form>
+
+                      
                   </div>
                 </a>
                 </article>

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {browserHistory} from "react-router";
-import Search from 'react-search'
+import Search from 'react-search';
 import Pagination from 'material-ui-pagination';
 import YummyRecipeCard from "../card/YummyRecipeCard";
 import "./search.css";
@@ -8,12 +8,14 @@ import "./dashboard.css";
 import NewCategory from '../newcategory';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import swal from 'sweetalert';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: [],
+      items: [],
       token: "",
       error: "",
       open: false,
@@ -28,7 +30,10 @@ class Dashboard extends Component {
     if (typeof(localStorage) !== undefined) {
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
-        this.setState({error: "token not found, please login again", open: true})
+          swal("Token not found, please login again","", "error");
+          browserHistory.push({
+            pathname: "/login",
+          });
       } else {
         this.setState({
           token: token
@@ -73,18 +78,15 @@ class Dashboard extends Component {
       method: "GET",
       mode: 'cors',
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
-    }).then((resp) => resp.json()).then(function(results) {
-
-      if (results != undefined) {
+    }).then((res) => res.json())
+    .then((results) => {
+      if (results !== undefined) {
         console.log("res", results);
-        let recipes = results.map((res, i) => {
-          return {id: res.id, title: res.title, description: res.description}
-        })
-        _this.setState({"categories": recipes})
-
+        _this.setState({"categories": results})
       }
     });
   }
+  
 
   fetchCategory() {
     const _this = this;
@@ -94,9 +96,8 @@ class Dashboard extends Component {
       method: "GET",
       mode: 'cors',
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
-    }).then((resp) => resp.json()). // Transform the data into json
-    then(function(data) {
-      console.log(data);
+    }).then((resp) => resp.json()) // Transform the data into json
+    .then((data) => {
       _this.setState(
         {
           "categories": data.categories,
@@ -109,16 +110,21 @@ class Dashboard extends Component {
   }
 
   render() {
-    const actions = [< FlatButton label = "Discard" primary = {
+    const actions = [
+      <FlatButton label = "Discard" 
+      primary = {
         true
       }
       onTouchTap = {
         this.handleClose
-      } />];
+      }
+       />
+      ];
+
     return (
 
       <div id="main">
-        <Search items={this.state.repos} multiple={true} getItemsAsync={this.getItemsAsync.bind(this)} placeholder='Search your categories'/>
+        <Search items={this.state.reps} multiple={true} getItemsAsync={this.getItemsAsync.bind(this)} placeholder='Search your categories'/>
         <div className="inner">
           <header id="header">
             <h1 >Yummy Recipes</h1>

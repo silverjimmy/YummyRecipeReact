@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
-import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import swal from 'sweetalert';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -10,13 +10,11 @@ import FlatButton from 'material-ui/FlatButton';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-class NewCategoryitem extends Component {
+class NewRecipe extends Component {
   constructor(props){
       super(props);
       // default state
       this.state = {
-        "name": "",
-        "description": "",
         "error": "",
         "open": false,
         "token": ""
@@ -26,7 +24,6 @@ class NewCategoryitem extends Component {
         the value of inside the function scope
        */
       this.handleNameChange = this.handleNameChange.bind(this);
-      this.handlePassChange = this.handlePassChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleOpen = () => {
@@ -40,18 +37,10 @@ class NewCategoryitem extends Component {
   handleNameChange(event){
     // update the state with new value from input
     this.setState({
-      name: event.target.value
+      [event.target.name]: event.target.value
     });
 
   }
-
-  handlePassChange(event){
-    // update the state with new value from input
-    this.setState({
-      description: event.target.value
-    });
-  }
-
   handleSubmit(event){
     // prevent the default browser action
     event.preventDefault();
@@ -60,6 +49,7 @@ class NewCategoryitem extends Component {
         // error empty inputs
     }
     this.addcategory();
+    this.setState({open: false});
   }
 
   componentDidMount(){
@@ -67,11 +57,10 @@ class NewCategoryitem extends Component {
       // store the token
       const token = localStorage.getItem("yummy_token");
       if (token === null) {
-        alert("token not found, please login again");
+        swal("Token not found, please login again","", "error");
         // redirect to login
       }
       else {
-        console.log("id ", this.props);
         this.setState({
             token: token,
         });
@@ -80,7 +69,7 @@ class NewCategoryitem extends Component {
   }
 
   // make request to the api
-  addcategory(){
+  addcategory = ()=>{
   const _this = this;
   const category_id = this.props.category_id;
   const url = `http://127.0.0.1:5000/category/${category_id}/recipe/`
@@ -94,20 +83,20 @@ class NewCategoryitem extends Component {
       })
    })
   .then((resp) => resp.json()) // Transform the data into json
-  .then(function(data) {
+  .then((data)=>{
     // Create and append the li's to the ul
       // _this.setState({
       //     "response": data
       // })
-      console.log(data);
+      // console.log(data);
       if(data.status === "success"){
-        // login was successful
-          alert(data.message);
+        // login was successful        
+        swal("Recipe Saved","", "success");
+        this.props.fetchRecipes(); 
           _this.setState({
             error: ""
           })
           // store token in the browser localStorage
-          window.location.reload();
       }
       else{
         _this.setState({
@@ -131,7 +120,7 @@ class NewCategoryitem extends Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.handleSubmit}
       />,
     ];
 
@@ -142,7 +131,7 @@ class NewCategoryitem extends Component {
       </a>
 
         <Dialog
-          title="New Category Recipe"
+          title="New Recipe"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -163,12 +152,8 @@ class NewCategoryitem extends Component {
                       type="Description"
                       name="description"
                       hintText="Description"
-                      onChange={this.handlePassChange} />
+                      onChange={this.handleNameChange} />
                 </div>
-                <FlatButton
-                    label="ADD"
-                    type="submit"
-                    onClick={this.handleSubmit} />
               </form>
           </div>
         </Dialog>
@@ -177,4 +162,4 @@ class NewCategoryitem extends Component {
   }
 }
 
-export default NewCategoryitem;
+export default NewRecipe;

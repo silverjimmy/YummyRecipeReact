@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
-
+import swal from 'sweetalert';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -19,7 +19,7 @@ class DeleteItem extends Component {
       "open": false,
       "erroropen": false,
       "token": "",
-      "dialog_msg": "Are you sure you want to delete this Item?",
+      "dialog_msg": "Are you sure you want to delete this Recipe?",
       "items": []
     }
 
@@ -37,13 +37,14 @@ class DeleteItem extends Component {
     this.setState({open: false});
   };
 
-  handleSubmit(event, category_id, item_id){
+  handleSubmit=(event, category_id, item_id) => {
     // prevent the default browser action
     event.preventDefault();
 
     if (this.state.name === "" || this.state.description === "") {
         // error empty inputs
     }
+
     this.deletecategory(category_id, item_id);
     this.setState({open: false});
   }
@@ -51,7 +52,7 @@ class DeleteItem extends Component {
     if(typeof(localStorage) !==  undefined){
         const token = localStorage.getItem("yummy_token");
         if (token === null) {
-          alert("token not found, please login again");
+          swal("Token not found, please login again","", "error");
         }
         else {
           this.setState({
@@ -62,8 +63,8 @@ class DeleteItem extends Component {
     }
 
     // make request to the api
-    deletecategory(category_id, item_id){
-
+    deletecategory = (category_id, item_id) => {
+      console.log("deletiing");
       const _this = this;
       const url = `http://127.0.0.1:5000/category/${category_id}/recipe/${item_id}`;
       fetch(url, {
@@ -75,9 +76,12 @@ class DeleteItem extends Component {
           })
        })
       .then((resp) => resp.json()) // Transform the data into json
-      .then(function(data) {
+      .then((data) => {
         console.log(data);
           if(data.status === "success"){
+            swal("Recipe Deleted","", "info");
+            console.log(this.props,"These are props");
+            this.props.fetchRecipes();
             _this.setState({
               dialog_msg: data.message,
               open: true
@@ -88,7 +92,6 @@ class DeleteItem extends Component {
               error: data.message,
               open: true
             })
-            window.location.reload();
           }
       }).catch((err) =>{
           console.error(err)
