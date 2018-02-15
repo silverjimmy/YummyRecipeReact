@@ -89,9 +89,11 @@ class Editcategory extends Component {
       .then((resp) => resp.json()) // Transform the data into json
       .then(function(data) {
         // Create and append the li's to the ul
-        console.log(data);
           if(data.status === "success"){
             // login was successful
+            browserHistory.push({
+              pathname: "/dashboard"
+          });
               _this.setState({
                 item: data.items
               })

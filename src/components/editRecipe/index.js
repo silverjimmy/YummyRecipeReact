@@ -89,15 +89,13 @@ class EditRecipe extends Component {
           })
        })
        .then(response =>response.json())
-       .then(function(recipe) {
-        console.log(recipe)
+       .then((recipe) => {
          _this.setState({name:recipe.recipe_name,description:recipe.recipe_description})
        })}
 
     // make request to the api
-    updatecategory(category_id, item_id){
+    updatecategory = (category_id, item_id) => {
       this.setState({recipeId:item_id, categoryId:category_id})
-
       const _this = this;
       const url = `http://127.0.0.1:5000/category/${category_id}/recipe/${item_id}`;
       fetch(url, {
@@ -110,11 +108,13 @@ class EditRecipe extends Component {
           })
        })
       .then((resp) => resp.json()) // Transform the data into json
-      .then(function(data) {
+      .then((data) => {
         // Create and append the li's to the ul
-        console.log('dfjdfjfjkfx',data);
+        this.props.editRecipe();
           if(data.status === "success"){
             // login was successful
+            swal("Recipe Saved","", "success");
+            
               _this.setState({
                 item: data.items
               })
@@ -128,6 +128,30 @@ class EditRecipe extends Component {
       }).catch((err) =>{
           console.error(err)
       })
+    }
+
+    fetchRecipes(category_id){
+      console.log("I'm called");
+      const _this = this;
+      const url = `http://127.0.0.1:5000/category/${category_id}`
+      fetch(url, {
+        method: "GET",
+        mode: 'cors',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': this.state.token
+        })
+      })
+      .then((resp) => resp.json()) // Transform the data into json
+      .then((data) => {
+          // Create and append the li's to the ul\
+          console.log(data.category.recipes);
+          _this.setState({
+              "items": data.category.recipes
+          });
+        }).catch((err) => {
+          console.error(err)
+        })
     }
 
   render() {

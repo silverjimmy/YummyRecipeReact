@@ -45,7 +45,7 @@ class NewCategory extends Component {
     });
     if (this.state.name === "" || this.state.description === "") {
     }
-    swal("Category Deleted","", "success");
+    swal("Category Created","", "success");
     browserHistory.push({
       pathname: "/dashboard"
     });
