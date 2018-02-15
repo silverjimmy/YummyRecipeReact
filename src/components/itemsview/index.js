@@ -22,29 +22,29 @@ const RecipeView = (props) => (
             <TableRow>
               <TableHeaderColumn>Name</TableHeaderColumn>
               <TableHeaderColumn>Description</TableHeaderColumn>
+              <TableHeaderColumn></TableHeaderColumn>
+              <TableHeaderColumn></TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody>
         {
           props.items.map((category, index) => (
-
-              <TableRow key={category.id}>
-                <TableRowColumn>{ category.title }</TableRowColumn>
-                <TableRowColumn>{ category.description }</TableRowColumn>
+            <TableRow key={category.recipe_id}>
+                <TableRowColumn>{ category.recipe_name }</TableRowColumn>
+                <TableRowColumn>{ category.recipe_description }</TableRowColumn>
                 <TableRowColumn>
                   <Link to={"/category/" + props.category_id +"/recipe/"+ category.id }>
-                    <DeleteItem item_id={category.id} category_id={props.category_id} />
+                    <DeleteItem item_id={category.recipe_id} category_id={props.category_id} fetchRecipes={props.fetchRecipes}/>
                   </Link>
                 </TableRowColumn>
                 <TableRowColumn>
                   <Link to={"/category/" + props.category_id +"/recipe/"+ category.id }>
-                    <EditRecipe item_id={category.id} category_id={props.category_id} />
+                    <EditRecipe item_id={category.recipe_id} category_id={props.category_id} fetchRecipes={props.fetchRecipes} />
 
                   </Link>
                 </TableRowColumn>
 
               </TableRow>
-
           ))
         }
           </TableBody>

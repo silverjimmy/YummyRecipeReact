@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
+import swal from "sweetalert";
 
 
 class DeleteCategory extends Component {
@@ -73,6 +74,7 @@ class DeleteCategory extends Component {
       .then(function(data) {
           if(data.status === "success"){
             console.log(data);
+            swal("Category Deleted","", "info");
             _this.setState({
               dialog_msg: data.message,
               _open: true
