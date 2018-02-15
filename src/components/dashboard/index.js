@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {browserHistory} from "react-router";
-import Search from 'react-search'
+import Search from 'react-search';
 import Pagination from 'material-ui-pagination';
 import YummyRecipeCard from "../card/YummyRecipeCard";
 import "./search.css";
@@ -103,7 +103,7 @@ class Dashboard extends Component {
       mode: 'cors',
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
     }).then((resp) => resp.json()) // Transform the data into json
-    .then(function(data) {
+    .then((data) => {
       console.log(data);
       _this.setState(
         {

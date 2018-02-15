@@ -37,7 +37,7 @@ class DeleteItem extends Component {
     this.setState({open: false});
   };
 
-  handleSubmit(event, category_id, item_id){
+  handleSubmit=(event, category_id, item_id) => {
     // prevent the default browser action
     event.preventDefault();
 
@@ -45,7 +45,6 @@ class DeleteItem extends Component {
         // error empty inputs
     }
 
-    swal("Recipe Deleted","", "info");
     this.deletecategory(category_id, item_id);
     this.setState({open: false});
   }
@@ -64,8 +63,8 @@ class DeleteItem extends Component {
     }
 
     // make request to the api
-    deletecategory(category_id, item_id){
-
+    deletecategory = (category_id, item_id) => {
+      console.log("deletiing");
       const _this = this;
       const url = `http://127.0.0.1:5000/category/${category_id}/recipe/${item_id}`;
       fetch(url, {
@@ -77,9 +76,12 @@ class DeleteItem extends Component {
           })
        })
       .then((resp) => resp.json()) // Transform the data into json
-      .then(function(data) {
+      .then((data) => {
         console.log(data);
           if(data.status === "success"){
+            swal("Recipe Deleted","", "info");
+            console.log(this.props,"These are props");
+            this.props.fetchRecipes();
             _this.setState({
               dialog_msg: data.message,
               open: true

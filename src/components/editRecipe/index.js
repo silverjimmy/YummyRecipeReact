@@ -48,7 +48,7 @@ class EditRecipe extends Component {
     console.log(this.state.name)
   }
 
-  handleSubmit(event, category_id, item_id){
+  handleSubmit = (event, category_id, item_id)=>{
     // prevent the default browser action
     event.preventDefault();
 
@@ -110,11 +110,10 @@ class EditRecipe extends Component {
       .then((resp) => resp.json()) // Transform the data into json
       .then((data) => {
         // Create and append the li's to the ul
-        this.props.editRecipe();
           if(data.status === "success"){
+            this.props.fetchRecipes();
             // login was successful
             swal("Recipe Saved","", "success");
-            
               _this.setState({
                 item: data.items
               })
@@ -128,30 +127,6 @@ class EditRecipe extends Component {
       }).catch((err) =>{
           console.error(err)
       })
-    }
-
-    fetchRecipes(category_id){
-      console.log("I'm called");
-      const _this = this;
-      const url = `http://127.0.0.1:5000/category/${category_id}`
-      fetch(url, {
-        method: "GET",
-        mode: 'cors',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': this.state.token
-        })
-      })
-      .then((resp) => resp.json()) // Transform the data into json
-      .then((data) => {
-          // Create and append the li's to the ul\
-          console.log(data.category.recipes);
-          _this.setState({
-              "items": data.category.recipes
-          });
-        }).catch((err) => {
-          console.error(err)
-        })
     }
 
   render() {

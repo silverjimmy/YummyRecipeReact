@@ -80,7 +80,7 @@ class Items extends Component{
                 <Editcategory category_id={this.props.params.id} />
                 <DeleteCategory category_id={this.props.params.id}/>
                 <br/>
-                <RecipeView items={this.state.items} category_id={this.props.params.id} />
+                <RecipeView items={this.state.items} category_id={this.props.params.id} fetchRecipes={this.fetchRecipes} />
             </div>
           </div>
         </div>
