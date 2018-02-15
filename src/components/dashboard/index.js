@@ -15,6 +15,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       categories: [],
+      items: [],
       token: "",
       error: "",
       open: false,
@@ -77,18 +78,11 @@ class Dashboard extends Component {
       method: "GET",
       mode: 'cors',
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
-    }).then((resp) => resp.json()).then(function(results) {
-
+    }).then((res) => res.json())
+    .then((results) => {
       if (results !== undefined) {
         console.log("res", results);
-        let items = results.map((res) => {
-          return {
-            id: res.id, 
-            title: res.title, 
-            description: res.description
-          }
-        })
-        _this.setState({"categories": items})
+        _this.setState({"categories": results})
       }
     });
   }
@@ -104,7 +98,6 @@ class Dashboard extends Component {
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
     }).then((resp) => resp.json()) // Transform the data into json
     .then((data) => {
-      console.log(data);
       _this.setState(
         {
           "categories": data.categories,
@@ -118,19 +111,20 @@ class Dashboard extends Component {
 
   render() {
     const actions = [
-      < FlatButton label = "Discard" 
+      <FlatButton label = "Discard" 
       primary = {
         true
       }
       onTouchTap = {
         this.handleClose
       }
-       />];
+       />
+      ];
 
     return (
 
       <div id="main">
-        <Search items={this.state.repos} multiple={true} getItemsAsync={this.getItemsAsync.bind(this)} placeholder='Search your categories'/>
+        <Search items={this.state.reps} multiple={true} getItemsAsync={this.getItemsAsync.bind(this)} placeholder='Search your categories'/>
         <div className="inner">
           <header id="header">
             <h1 >Yummy Recipes</h1>

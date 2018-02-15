@@ -48,7 +48,6 @@ const RecipeView = (props) => (
           ))
         }
           </TableBody>
-          
       </Table>
     </div>
 

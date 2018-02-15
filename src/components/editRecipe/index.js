@@ -23,9 +23,8 @@ class EditRecipe extends Component {
       "name":"",
       "description":"",
     }
-    console.log('what!!!!',this.props)
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.updatecategory = this.updatecategory.bind(this);
+    this.updaterecipe = this.updaterecipe.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
   }
 
@@ -55,7 +54,7 @@ class EditRecipe extends Component {
     if (this.state.name === "" || this.state.description === "") {
         // error empty inputs
     }
-    this.updatecategory(category_id, item_id);
+    this.updaterecipe(category_id, item_id);
     this.setState({open: false});
     swal("Recipe has been updated","", "success");
     
@@ -77,57 +76,58 @@ class EditRecipe extends Component {
       }
     }
 
-    componentDidMount(){
-      const _this = this;
-      const url = `http://127.0.0.1:5000/category/${this.props.category_id}/recipe/${this.props.item_id}`;
-      fetch(url, {
-          method: "GET",
-          mode: 'cors',
-          headers: new Headers({
-            'Content-Type': 'application/json',
-            'Authorization':localStorage.getItem("yummy_token")
-          })
-       })
-       .then(response =>response.json())
-       .then((recipe) => {
-         _this.setState({name:recipe.recipe_name,description:recipe.recipe_description})
-       })}
+  componentDidMount(){
+    const _this = this;
+    const url = `http://127.0.0.1:5000/category/${this.props.category_id}/recipe/${this.props.item_id}`;
+    fetch(url, {
+        method: "GET",
+        mode: 'cors',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization':localStorage.getItem("yummy_token")
+        })
+      })
+      .then(response =>response.json())
+      .then((recipe) => {
+        _this.setState({name:recipe.recipe_name,description:recipe.recipe_description})
+
+    console.log(recipe)
+      })}
 
     // make request to the api
-    updatecategory = (category_id, item_id) => {
-      this.setState({recipeId:item_id, categoryId:category_id})
-      const _this = this;
-      const url = `http://127.0.0.1:5000/category/${category_id}/recipe/${item_id}`;
-      fetch(url, {
-          method: "PUT",
-          body: JSON.stringify(this.state),
-          mode: 'cors',
-          headers: new Headers({
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem("yummy_token")
-          })
-       })
-      .then((resp) => resp.json()) // Transform the data into json
-      .then((data) => {
-        // Create and append the li's to the ul
-          if(data.status === "success"){
-            this.props.fetchRecipes();
-            // login was successful
-            swal("Recipe Saved","", "success");
-              _this.setState({
-                item: data.items
-              })
-          }
-          else{
-            _this.setState({
-              error: data.message,
-              // open: true
-            })
-          }
-      }).catch((err) =>{
-          console.error(err)
+  updaterecipe = (category_id, item_id) => {
+    this.setState({recipeId:item_id, categoryId:category_id})
+    const _this = this;
+    const url = `http://127.0.0.1:5000/category/${category_id}/recipe/${item_id}`;
+    fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(this.state),
+        mode: 'cors',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem("yummy_token")
+        })
       })
-    }
+    .then((resp) => resp.json()) // Transform the data into json
+    .then((data) => {
+      // Create and append the li's to the ul
+        if(data.status === "success"){
+          this.props.fetchRecipes();
+          // login was successful
+            _this.setState({
+              item: data.items
+            })
+        }
+        else{
+          _this.setState({
+            error: data.message,
+            // open: true
+          })
+        }
+    }).catch((err) =>{
+        console.error(err)
+    })
+  }
 
   render() {
     const actions = [

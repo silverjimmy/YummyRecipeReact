@@ -21,15 +21,16 @@ class Editcategory extends Component {
       "open": false,
       "erroropen": false,
       "token": "",
-      "items": []
+      "items": [],
+      "name":"",
+      "description":"",
     }
-    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updatecategory = this.updatecategory.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
   }
 
-  handleOpen = (event) => {
+  handleOpen = (event) =>{
     event.preventDefault()
     this.setState({open: true});
   };
@@ -38,14 +39,17 @@ class Editcategory extends Component {
     this.setState({open: false});
   };
 
-  handleNameChange(event){
+  handleNameChange = (event) =>{
+    event.preventDefault()
     // update the state with new value from input
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    let field = event.target.name
+    let category = this.state
+    category[field] = event.target.value
+    this.setState({category:category})
+    console.log(category)
   }
 
-  handleSubmit(event, category_id){
+  handleSubmit=(event, category_id)=>{
     // prevent the default browser action
     event.preventDefault();
 
@@ -56,7 +60,7 @@ class Editcategory extends Component {
     this.setState({open: false});
     swal("Category has been Updated","", "success");
   }
-  componentDidMount(){
+  componentWillMount(){
     if(typeof(localStorage) !==  undefined){
       // store the token
         const token = localStorage.getItem("yummy_token");
@@ -72,9 +76,26 @@ class Editcategory extends Component {
       }
     }
 
+  componentDidMount(){
+    const _this = this;
+    const url = `http://127.0.0.1:5000/category/${this.props.category_id}`;
+    fetch(url, {
+        method: "GET",
+        mode: 'cors',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization':localStorage.getItem("yummy_token")
+        })
+      })
+      .then(response =>response.json())
+      .then((category) => {
+        _this.setState({name:category.category.title,description:category.category.description})
+        
+        console.log(category)
+      })}
+
     // make request to the api
     updatecategory(category_id){
-
       const _this = this;
       const url = `http://127.0.0.1:5000/category/${category_id}`;
       fetch(url, {
@@ -97,8 +118,6 @@ class Editcategory extends Component {
               _this.setState({
                 item: data.items
               })
-
-              // browserHistory.push("/items");
           }
           else{
             _this.setState({
@@ -122,7 +141,7 @@ class Editcategory extends Component {
         label="Save"
         primary={true}
         keyboardFocused={true}
-        onClick={(event) => this.handleSubmit(event, this.props.category_id)}
+        onClick={(event) => this.handleSubmit(event, this.props.category_id,'info')}
       />,
     ];
 
@@ -136,21 +155,24 @@ class Editcategory extends Component {
           onRequestClose={this.handleClose}
         >
 
-          <form method="POST" action="">
-            <div>
-              <TextField
-                  name="name"
-                  hintText="name"
-                  onChange={this.handleNameChange}/>
-            </div>
-            <div>
-              <TextField
-                  type="Description"
-                  name="description"
-                  hintText="Description"
-                  onChange={this.handleNameChange} />
-            </div>
-          </form>
+        <form method="POST" action="">
+        <div>
+          <TextField
+              name="name"
+              value ={this.state.name}
+              hintText="name"
+              onChange={this.handleNameChange}/>
+        </div>
+        <div>
+          <TextField
+              type="Description"
+              name="description"
+              value={this.state.description}
+              hintText="Description"
+              onChange={this.handleNameChange} />
+        </div>
+        
+      </form>
 
         </Dialog>
         <span className="symbol"><img src={process.env.PUBLIC_URL + "/images/edit.svg"} onClick={(event) => this.handleOpen(event)}  /></span>
