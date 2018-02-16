@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RaisedButton from 'material-ui/RaisedButton';
 import "./dashboard.css";
+import Pagination from 'material-ui-pagination';
 import RecipeView from '../itemsview';
 import NewRecipe from '../newRecipe';
 import DeleteCategory from '../deleteCategory'
@@ -81,6 +82,12 @@ class Items extends Component{
                 <DeleteCategory category_id={this.props.params.id}/>
                 <br/>
                 <RecipeView items={this.state.items} category_id={this.props.params.id} fetchRecipes={this.fetchRecipes} />
+                <Pagination
+                total = { this.state.total }
+                current = { this.state.number }
+                display = { this.state.display }
+                onChange = { this.handlePageChange }
+              />
             </div>
           </div>
         </div>

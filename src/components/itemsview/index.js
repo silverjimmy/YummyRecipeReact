@@ -9,7 +9,9 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
+  TablePagination
 } from 'material-ui/Table';
+import Search from 'react-search';
 import EditRecipe from '../editRecipe';
 import DeleteItem from "../deleteitem";
 
@@ -17,6 +19,11 @@ import DeleteItem from "../deleteitem";
 const RecipeView = (props) => (
 
   <div>
+  <input
+  type="text"
+  placeholder="Search Name"
+  onChange={this.doSearch}
+/>
       <Table>
           <TableHeader>
             <TableRow>
@@ -47,6 +54,7 @@ const RecipeView = (props) => (
               </TableRow>
           ))
         }
+        
           </TableBody>
       </Table>
     </div>
