@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { browserHistory } from "react-router";
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import { Link } from "react-router";
 import Dialog from 'material-ui/Dialog';
 import "./login.css";
 
@@ -104,6 +106,10 @@ class Login extends Component {
               onTouchTap={this.handleClose}
             />,
           ];
+      const style = {
+        margin: 12,
+        cursor: 'pointer',
+      };
       return(
 
         <div>
@@ -141,10 +147,13 @@ class Login extends Component {
                               hintText="password"
                               onChange={this.handleNameChange} />
                         </div>
-                        <FlatButton
+                        <RaisedButton
                             label="Login"
                             type="submit"
                             onClick={this.handleSubmit} />
+
+                        
+                        <Link to="/register" activeClassName="active"><RaisedButton label="Register" primary={true} style={style} /></Link>
                       </form>
 
                       

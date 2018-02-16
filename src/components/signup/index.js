@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import "./signup.css"
 
 class SignUp extends Component{
   constructor(props){
@@ -140,7 +140,7 @@ class SignUp extends Component{
                               hintText="password"
                               onChange={this.handleNameChange} />
                         </div>
-                        <FlatButton
+                        <RaisedButton
                             label="Sign Up"
                             type="submit"
                             onClick={this.handleSubmit} />

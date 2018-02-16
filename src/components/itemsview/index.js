@@ -22,8 +22,8 @@ const RecipeView = (props) => (
             <TableRow>
               <TableHeaderColumn>Name</TableHeaderColumn>
               <TableHeaderColumn>Description</TableHeaderColumn>
-              <TableHeaderColumn></TableHeaderColumn>
-              <TableHeaderColumn></TableHeaderColumn>
+              <TableHeaderColumn>Delete Recipe</TableHeaderColumn>
+              <TableHeaderColumn>Edit Recipe</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody>

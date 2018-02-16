@@ -36,7 +36,6 @@ class Menu extends Component {
         title={<span style={style.title}><Link to="/dashboard">YummyRecipes</Link></span>}
         iconElementRight={
           <div>
-          <Link to="/register" activeClassName="active"><RaisedButton label="Register" primary={true} style={style} /></Link>
           <RaisedButton label="LogOut" secondary={true} onClick={this.LogOut} style={style} />
           </div>
         }
