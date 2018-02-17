@@ -9,7 +9,6 @@ import NewCategory from '../newcategory';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import swal from 'sweetalert';
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -96,7 +95,8 @@ class Dashboard extends Component {
       method: "GET",
       mode: 'cors',
       headers: new Headers({'Content-Type': 'application/json', 'Authorization': this.state.token})
-    }).then((resp) => resp.json()) // Transform the data into json
+    })
+    .then((resp) => resp.json()) // Transform the data into json
     .then((data) => {
       _this.setState(
         {

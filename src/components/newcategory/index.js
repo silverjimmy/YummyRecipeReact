@@ -4,6 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import swal from 'sweetalert';
 import { browserHistory } from "react-router";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 class NewCategory extends Component {
   constructor(props){

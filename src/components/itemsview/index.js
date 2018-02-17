@@ -12,6 +12,8 @@ import {
 } from 'material-ui/Table';
 import EditRecipe from '../editRecipe';
 import DeleteItem from "../deleteitem";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 
 const RecipeView = (props) => (
