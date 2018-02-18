@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+
 class DeleteCategory extends Component {
   constructor(props){
     super(props);

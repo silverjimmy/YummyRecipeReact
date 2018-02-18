@@ -6,7 +6,6 @@ import Dialog from 'material-ui/Dialog';
 import "./signup.css";
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-
 class SignUp extends Component{
   constructor(props){
       super(props);

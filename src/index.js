@@ -13,7 +13,7 @@ import './index.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
-injectTapEventPlugin();
+
 
 ReactDOM.render(<MuiThemeProvider>
                   <Router history={browserHistory}>

@@ -6,7 +6,7 @@ import NewRecipe from '../newRecipe';
 import DeleteCategory from '../deleteCategory'
 import Editcategory from "../editcategory";
 import swal from 'sweetalert';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
 
 class Items extends Component{
@@ -62,6 +62,7 @@ class Items extends Component{
       }).catch((err) => {
         console.error(err)
       })
+
   }
 
   render(){

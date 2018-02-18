@@ -6,6 +6,7 @@ import { browserHistory } from "react-router";
 import swal from 'sweetalert';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
  * in this example [FlatButtons](/#/components/flat-button).

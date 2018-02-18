@@ -5,7 +5,7 @@ import "./menu.css";
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+
 
 
 class Menu extends Component {

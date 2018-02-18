@@ -9,6 +9,9 @@ import NewCategory from '../newcategory';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import swal from 'sweetalert';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
