@@ -54,4 +54,8 @@ const RecipeView = (props) => (
 
 );
 
+RecipeView.defaultProps = {
+  items: [],
+}
+
 export default RecipeView;

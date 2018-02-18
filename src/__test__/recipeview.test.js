@@ -31,12 +31,12 @@ describe('recipeDisplay', () => {
            expect(shallowToJson(recipeDisplay)).toMatchSnapshot();
         });
 
-    //     it('renders without crashing', () => {
-    //         const div = document.createElement('div');
-    //         ReactDOM.render(
-    //         <MuiThemeProvider>
-    //         <RecipeView {...props}/>
-    //         </MuiThemeProvider>, div);
-    // });
+        it('renders without crashing', () => {
+            const div = document.createElement('div');
+            ReactDOM.render(
+            <MuiThemeProvider>
+            <RecipeView {...props}/>
+            </MuiThemeProvider>, div);
+    });
     
 })

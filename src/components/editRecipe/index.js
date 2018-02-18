@@ -91,7 +91,11 @@ class EditRecipe extends Component {
         _this.setState({name:recipe.recipe_name,description:recipe.recipe_description})
 
     console.log(recipe)
-      })}
+      })
+      .catch(e=>{
+        
+      })
+    }
 
     // make request to the api
   updaterecipe = (category_id, item_id) => {

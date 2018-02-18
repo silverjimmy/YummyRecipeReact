@@ -1,5 +1,9 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// enabling
+injectTapEventPlugin();
 
 configure({ adapter: new Adapter() });
 

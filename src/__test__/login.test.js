@@ -13,9 +13,10 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 describe('<Login />', () => {
+        const wrapper = shallow( <Login /> );
+
     it('matches  snapshot', () => {
-            const header = shallow(<Login />);
-           expect(shallowToJson(header)).toMatchSnapshot();
+           expect(shallowToJson(wrapper)).toMatchSnapshot();
         });
 
     it('renders without crashing', () => {
@@ -27,11 +28,12 @@ describe('<Login />', () => {
         });
 
         it('has a button classname', () => {
-                const  wrapper = render(
-                        <MuiThemeProvider>
-                        <FlatButton/>
-                        </MuiThemeProvider>        
-                );
-             });
+                // expect(wrapper.find(''))
+                
+        });
+
+        it('renders five div jsx elements', () => {
+        expect(wrapper.find("div")).toHaveLength(5);        
+        });
     
 })

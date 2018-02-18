@@ -4,9 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
 import swal from 'sweetalert';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -93,7 +90,11 @@ class Editcategory extends Component {
         _this.setState({name:category.category.title,description:category.category.description})
         
         console.log(category)
-      })}
+      })
+      .catch(e=>{
+        
+      })
+    }
 
     // make request to the api
     updatecategory(category_id){

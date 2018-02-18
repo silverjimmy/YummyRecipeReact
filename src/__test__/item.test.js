@@ -4,9 +4,10 @@ import { render,  configure,shallow } from 'enzyme';
 import {shallowToJson} from 'enzyme-to-json';
 import expect from "expect";
 import Adapter from 'enzyme-adapter-react-15';
-import RecipeView from '../components/itemsview';
+import Items from '../components/items';
 import LocalStorageMock from '../setupTests';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 configure({ adapter: new Adapter() });
 
@@ -18,7 +19,7 @@ const setUp = () => {
     const props = {
         match
     };
-    return shallow(<RecipeView {...props} />);
+    return shallow(<Items {...props} />);
 };
 
 

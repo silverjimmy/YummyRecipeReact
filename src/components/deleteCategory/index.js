@@ -4,8 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
 import swal from "sweetalert";
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 
 class DeleteCategory extends Component {
