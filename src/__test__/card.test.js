@@ -24,8 +24,23 @@ const setUp = () => {
 };
 
 describe('ViewRecipe', () => {
+    const wrapper = shallow( <YummyRecipeCard /> );
     it('matches  snapshot', () => {
             const viewRecipe = setUp;
            expect(shallowToJson(viewRecipe)).toMatchSnapshot();
         });    
+        it('renders div jsx elements', () => {
+            expect(wrapper.find("div")).toHaveLength(0);        
+            });
+
+        it('renders span jsx elements', () => {
+            expect(wrapper.find("span")).toHaveLength(0);        
+            });
+        
+        it('renders article jsx elements', () => {
+            expect(wrapper.exists("article"));        
+            });
+        it('should render <div> without throwing an error', () => {
+            expect(wrapper.exists(<div key={index}/>))
+        });
 })

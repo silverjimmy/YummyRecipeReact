@@ -42,7 +42,18 @@ describe('recipeDisplay', () => {
 
         it('renders five div jsx elements', () => {
             const wrapper = shallow( <EditRecipe /> );
-        expect(wrapper.find("div")).toHaveLength(3);        
+            expect(wrapper.find("div")).toHaveLength(3);        
             });
+        
+        
+        it('should render a button', () =>{
+            const wrapper = shallow( <EditRecipe /> );
+            expect(wrapper.find('RaisedButton').length).toEqual(0);
+        })
+
+        it('should render a button', () =>{
+            const wrapper = shallow( <EditRecipe /> );
+            expect(wrapper.find('TableHeader').length).toEqual(0);
+        })
     
 })
