@@ -41,6 +41,14 @@ describe('ViewRecipe', () => {
             expect(wrapper.exists("article"));        
             });
         it('should render <div> without throwing an error', () => {
-            expect(wrapper.exists(<div key={index}/>))
+            expect(wrapper.exists(<div/>))
         });
+
+        it('should render <div> without throwing an error', () => {
+            expect(wrapper.exists(<h1 />))
+        });
+        it('should render <div> without throwing an error', () => {
+            expect(wrapper.exists(<article />))
+        });
+
 })

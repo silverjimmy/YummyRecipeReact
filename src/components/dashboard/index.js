@@ -21,8 +21,7 @@ class Dashboard extends Component {
       open: false,
       total: 5,
       display: 2,
-      page: 1,
-      reps:[]
+      page: 1
     }
 
     this.handlePageChange = this.handlePageChange.bind(this);

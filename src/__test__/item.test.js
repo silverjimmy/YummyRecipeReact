@@ -7,6 +7,10 @@ import Adapter from 'enzyme-adapter-react-15';
 import Items from '../components/items';
 import LocalStorageMock from '../setupTests';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RecipeView from '../components/itemsview';
+import NewRecipe from '../components/newRecipe';
+import DeleteCategory from '../components/deleteCategory';
+import Editcategory from "../components/editcategory";
 
 
 configure({ adapter: new Adapter() });
@@ -53,3 +57,23 @@ describe('recipeDisplay', () => {
         })
     
 })
+
+describe('<Items /> component contains child componenets', () => {
+    
+    it('should render <Additem/> component', () => {
+        const wrapper = shallow(<NewRecipe />)
+        expect(wrapper.length).toEqual(1)
+    });
+    it('should render <EditItem/> component', () => {
+        const wrapper = shallow(<RecipeView />)
+        expect(wrapper.length).toEqual(1)
+    });
+    it('should render <EditItem/> component', () => {
+        const wrapper = shallow(<DeleteCategory />)
+        expect(wrapper.length).toEqual(1)
+    });
+    it('should render <EditItem/> component', () => {
+        const wrapper = shallow(<Editcategory />)
+        expect(wrapper.length).toEqual(1)
+    });    
+});

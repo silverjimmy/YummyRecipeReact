@@ -24,6 +24,7 @@ const setUp = () => {
 };
 
 describe('<SignUp />', () => {
+    const wrapper = shallow( <SignUp /> );
     it('matches  snapshot', () => {
             const register = setUp;
            expect(shallowToJson(register)).toMatchSnapshot();
@@ -35,5 +36,24 @@ describe('<SignUp />', () => {
             <MuiThemeProvider>
         <SignUp />
         </MuiThemeProvider>, div);
+    });
+
+    it('renders the correct form fields', () => {
+        expect(wrapper.find('username').length).toBe(0);
+        expect(wrapper.find('password').length).toBe(0);
+        expect(wrapper.find('#login').length).toBe(0);
+    });
+    
+    it('renders a form element', () => {
+        expect(wrapper.find('form').length).toBe(1);
+    });
+    it('should render <div> without throwing an error', () => {
+        expect(wrapper.exists(<h4 />))
+    });
+    it('should render <div> without throwing an error', () => {
+        expect(wrapper.exists(<div className="modal-header"/>))
+    });
+    it('should render <div> without throwing an error', () => {
+        expect(wrapper.exists(<div className="error" />))
     });
 })

@@ -17,4 +17,9 @@ describe('<Menu />', () => {
            expect(shallowToJson(header)).toMatchSnapshot();
         });
 
+it('should render <div> without throwing an error', () => {
+        const header = shallow(<Menu />);
+        expect(header.exists(<div className="inner" />))
+        });
+
 })

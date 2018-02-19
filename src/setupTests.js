@@ -1,6 +1,7 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {notify} from 'react-notify-toast';
 
 // enabling
 injectTapEventPlugin();
@@ -30,5 +31,6 @@ class LocalStorageMock {
       delete this.store[key];
     }
   }
+  
   
   global.localStorage = new LocalStorageMock;
