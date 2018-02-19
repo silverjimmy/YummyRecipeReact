@@ -109,7 +109,7 @@ class SignUp extends Component{
                 <h2> Yummy Recipes </h2>
                 <div className="content">
                   <h4> Sign Up</h4>
-                      <form method="POST" action="">
+                      <form method="POST" action="" id="signup_form">
                         <div className="error">
                           <Dialog
                             actions={actions}
@@ -122,18 +122,21 @@ class SignUp extends Component{
                        </div>
                         <div>
                           <TextField
+                              id="username"
                               name="username"
                               hintText="username"
                               onChange={this.handleNameChange} />
                         </div>
                         <div>
                           <TextField
+                              id="email"
                               name="email"
                               hintText="Email"
                               onChange={this.handleNameChange} />
                         </div>
                         <div>
                           <TextField
+                              id="password"
                               type="password"
                               name="password"
                               hintText="password"

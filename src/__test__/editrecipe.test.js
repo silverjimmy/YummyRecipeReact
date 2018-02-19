@@ -7,7 +7,7 @@ import Adapter from 'enzyme-adapter-react-15';
 import EditRecipe from '../components/editRecipe';
 import LocalStorageMock from '../setupTests';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import toJson from 'enzyme-to-json';
 
 configure({ adapter: new Adapter() });
 
@@ -24,6 +24,8 @@ const setUp = () => {
 
 
 describe('recipeDisplay', () => {
+    const wrapper = shallow( <EditRecipe /> );
+    const preventDefault = jest.fn();
     const props = {
         match
     };
@@ -41,19 +43,17 @@ describe('recipeDisplay', () => {
              });
 
         it('renders five div jsx elements', () => {
-            const wrapper = shallow( <EditRecipe /> );
             expect(wrapper.find("div")).toHaveLength(3);        
             });
         
         
         it('should render a button', () =>{
-            const wrapper = shallow( <EditRecipe /> );
             expect(wrapper.find('RaisedButton').length).toEqual(0);
         })
 
         it('should render a button', () =>{
-            const wrapper = shallow( <EditRecipe /> );
             expect(wrapper.find('TableHeader').length).toEqual(0);
         })
+
     
 })

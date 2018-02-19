@@ -6,6 +6,7 @@ import expect from "expect";
 import Adapter from 'enzyme-adapter-react-15';
 import NewRecipe from '../components/newRecipe';
 import LocalStorageMock from '../setupTests';
+import toJson from 'enzyme-to-json';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
@@ -19,12 +20,21 @@ const setUp = () => {
         match
     };
     return shallow(<NewRecipe {...props} />);
+    
 };
 
 
 describe('CreateRecipe', () => {
+    const props = {
+        history: {
+            push: () => {}
+        },
+        location:{
+            search: {}
+        }  
+    }
     const wrapper = shallow(<NewRecipe />)
-
+    const preventDefault = jest.fn();
     it('matches  snapshot', () => {
             const createRecipe = setUp;
            expect(shallowToJson(createRecipe)).toMatchSnapshot();
@@ -45,6 +55,12 @@ describe('CreateRecipe', () => {
         expect(wrapper.find('name').length).toEqual(0);
         expect(wrapper.find('form').length).toEqual(1);
         expect(wrapper.find('input').length).toEqual(0)
+    });
+
+    it('renders the the add recipe form and submit data', () =>{
+        wrapper.setState({title:'Awesome recipe', category:'General', steps:'one and two', ingredients:"one and two", status:"public"});
+        wrapper.find("#recipe-form").simulate('submit', {preventDefault});
+        expect(toJson(wrapper)).toMatchSnapshot();
     });
     
 })
