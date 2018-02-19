@@ -6,8 +6,8 @@ cache:
   directories:
     - node_modules
 install:
-  - npm install jest-cli
   - npm install
 # command to run tests
 script:
     - npm test 
+    - npm test -- --coverage
