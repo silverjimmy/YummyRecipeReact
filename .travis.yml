@@ -1,9 +1,18 @@
 language: node_js
 node_js:
-  - "8"
-
+  # LTS version
+  - "9.3.0"
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install coveralls --save
+  - npm install
+  
+# command to run tests
 script:
-  - yarn test -- -u --coverage 
+    - npm test 
+    - npm test -- --coverage
 
-after_success:
-  - coveralls < coverage/lcov.info
+
+after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
