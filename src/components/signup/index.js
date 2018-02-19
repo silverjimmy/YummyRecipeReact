@@ -3,8 +3,7 @@ import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import "./signup.css"
-
+import "./signup.css";
 class SignUp extends Component{
   constructor(props){
       super(props);

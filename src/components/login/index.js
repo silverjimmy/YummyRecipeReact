@@ -81,7 +81,6 @@ class Login extends Component {
                   localStorage.setItem("yummy_token", data.auth_token)
               }
 
-            console.log(_this.state.username);
             _this.redirectTo(event, _this.state.username);
 
           }
