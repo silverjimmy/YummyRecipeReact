@@ -15,13 +15,15 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       categories: [],
+      searchedCategories: [],
+      totalSearchPages: null,
+      searchPageNumber: null,
       items: [],
       token: "",
       error: "",
       open: false,
       total: 5,
-      display: 2,
-      page: 1
+      page: 1,
     }
 
     this.handlePageChange = this.handlePageChange.bind(this);
@@ -64,16 +66,22 @@ class Dashboard extends Component {
     const _this = this;
     _this.setState({page: number}
       , () => {
-        this.fetchCategory();
+        if(this.state.searchedCategories.length){
+          this.getItemsAsync(this.state.searchterm);
+        }else{
+          this.fetchCategory();
+        }
       });
   }
 
   getItemsAsync(searchValue, cb) {
     const _this = this;
     if (searchValue === '') {
-      searchValue = ' '
+      _this.setState({searchedCategories: []})
+      return;
     }
-    let url = `http://127.0.0.1:5000/category/?q=${searchValue}`
+
+    let url = `http://127.0.0.1:5000/category/?limit=3&q=${searchValue}&page=${_this.state.page}`
     fetch(url, {
       method: "GET",
       mode: 'cors',
@@ -81,8 +89,14 @@ class Dashboard extends Component {
     }).then((res) => res.json())
     .then((results) => {
       if (results !== undefined) {
-        console.log("res", results);
-        _this.setState({"categories": results})
+        _this.setState(
+          {
+            searchedCategories: results.categories,
+            totalSearchPages: results.total,
+            searchPageNumber: results.current_page,
+            searchterm: searchValue,
+          }
+        )
       }
     });
   }
@@ -102,7 +116,8 @@ class Dashboard extends Component {
       _this.setState(
         {
           "categories": data.categories,
-          "total": data.total
+          "total": data.total,
+          number: data.current_page,
         }
       );
     }).catch((err) => {
@@ -122,6 +137,9 @@ class Dashboard extends Component {
        />
       ];
 
+      const categoriesToRender = this.state.searchedCategories.length?this.state.searchedCategories: this.state.categories;
+      const total = this.state.searchedCategories.length?this.state.totalSearchPages:this.state.total;
+      const number = this.state.searchedCategories.length?this.state.searchPageNumber:this.state.number;
     return (
 
       <div id="main">
@@ -138,13 +156,13 @@ class Dashboard extends Component {
           <div>
             <NewCategory/>
             <br/>
-            <YummyRecipeCard redirect={this.redirectTo} categories={this.state.categories}/>
+            <YummyRecipeCard redirect={this.redirectTo} categories={categoriesToRender}/>
             <br/>
             <br/>
             <Pagination
-          total = { this.state.total }
-          current = { this.state.number }
-          display = { this.state.display }
+          total = { total }
+          current = { number }
+          display = { total }
           onChange = { this.handlePageChange }
         />
           </div>
