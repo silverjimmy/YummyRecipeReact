@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> matches  snapshot 1`] = `
+<div>
+  <section
+    className="tiles"
+  >
+    <article>
+      <span
+        className="image"
+      >
+        <img
+          alt=""
+          src="/images/pic13.jpg"
+        />
+      </span>
+      <a>
+        <h2>
+           Yummy Recipes 
+        </h2>
+        <div
+          className="content"
+        >
+          <h4>
+             Sign In
+          </h4>
+          <form
+            action=""
+            method="POST"
+          >
+            <div
+              className="error"
+            >
+              <Dialog
+                actions={
+                  Array [
+                    <FlatButton
+                      disabled={false}
+                      fullWidth={false}
+                      label="Discard"
+                      labelPosition="after"
+                      labelStyle={Object {}}
+                      onKeyboardFocus={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      onTouchStart={[Function]}
+                      onTouchTap={[Function]}
+                      primary={true}
+                      secondary={false}
+                  />,
+                  ]
+                }
+                autoDetectWindowHeight={true}
+                autoScrollBodyContent={false}
+                modal={false}
+                onRequestClose={[Function]}
+                open={false}
+                repositionOnUpdate={true}
+              />
+            </div>
+            <div>
+              <TextField
+                disabled={false}
+                floatingLabelFixed={false}
+                fullWidth={false}
+                hintText="username"
+                multiLine={false}
+                name="username"
+                onChange={[Function]}
+                rows={1}
+                type="text"
+                underlineShow={true}
+              />
+            </div>
+            <div>
+              <TextField
+                disabled={false}
+                floatingLabelFixed={false}
+                fullWidth={false}
+                hintText="password"
+                multiLine={false}
+                name="password"
+                onChange={[Function]}
+                rows={1}
+                type="password"
+                underlineShow={true}
+              />
+            </div>
+            <FlatButton
+              disabled={false}
+              fullWidth={false}
+              label="Login"
+              labelPosition="after"
+              labelStyle={Object {}}
+              onClick={[Function]}
+              onKeyboardFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
+              primary={false}
+              secondary={false}
+              type="submit"
+            />
+          </form>
+        </div>
+      </a>
+    </article>
+  </section>
+</div>
+`;

@@ -13,7 +13,7 @@ class Items extends Component{
     this.state = {
       items: [],
       token: "",
-      name: "",
+      title: "",
       total: 5,
       display: 2,
       page: 1
@@ -60,6 +60,7 @@ class Items extends Component{
       }).catch((err) => {
         console.error(err)
       })
+
   }
 
   render(){

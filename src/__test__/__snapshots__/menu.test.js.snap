@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Menu /> matches  snapshot 1`] = `
+<div
+  className="inner"
+>
+  <AppBar
+    iconElementRight={
+      <div>
+        <Link
+          activeClassName="active"
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/register"
+        >
+          <RaisedButton
+            disabled={false}
+            fullWidth={false}
+            label="Register"
+            labelPosition="after"
+            primary={true}
+            secondary={false}
+            style={
+              Object {
+                "cursor": "pointer",
+                "margin": 12,
+              }
+            }
+          />
+        </Link>
+        <RaisedButton
+          disabled={false}
+          fullWidth={false}
+          label="LogOut"
+          labelPosition="after"
+          onClick={[Function]}
+          primary={false}
+          secondary={true}
+          style={
+            Object {
+              "cursor": "pointer",
+              "margin": 12,
+            }
+          }
+        />
+      </div>
+    }
+    showMenuIconButton={true}
+    title={
+      <span
+        style={undefined}
+      >
+        <Link
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/dashboard"
+        >
+          YummyRecipes
+        </Link>
+      </span>
+    }
+    zDepth={1}
+  />
+</div>
+`;

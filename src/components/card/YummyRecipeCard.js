@@ -26,4 +26,8 @@ const YummyRecipeCard = (props) => (
   </section>
 );
 
+YummyRecipeCard.defaultProps = {
+  categories: [],
+}
+
 export default YummyRecipeCard;

@@ -4,7 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from "react-router";
 import swal from 'sweetalert';
-
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
  * in this example [FlatButtons](/#/components/flat-button).
@@ -92,7 +91,11 @@ class EditRecipe extends Component {
         _this.setState({name:recipe.recipe_name,description:recipe.recipe_description})
 
     console.log(recipe)
-      })}
+      })
+      .catch(e=>{
+        
+      })
+    }
 
     // make request to the api
   updaterecipe = (category_id, item_id) => {

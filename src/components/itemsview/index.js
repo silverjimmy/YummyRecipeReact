@@ -12,6 +12,7 @@ import {
 } from 'material-ui/Table';
 import EditRecipe from '../editRecipe';
 import DeleteItem from "../deleteitem";
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 
 const RecipeView = (props) => (
@@ -52,5 +53,9 @@ const RecipeView = (props) => (
     </div>
 
 );
+
+RecipeView.defaultProps = {
+  items: [],
+}
 
 export default RecipeView;

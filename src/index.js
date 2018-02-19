@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-
 import Login from "./components/login";
 import SignUp from "./components/signup";
 import Dashboard from "./components/dashboard";
