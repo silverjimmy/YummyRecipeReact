@@ -1,3 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CreateRecipe matches  snapshot 1`] = `null`;
+
+exports[`CreateRecipe renders the the add recipe form and submit data 1`] = `
+<div>
+  <a
+    className="logo"
+  >
+    <span
+      className="symbol"
+    >
+      <img
+        alt="Logo "
+        className="App-logo"
+        onClick={[Function]}
+        src="/images/add.svg"
+      />
+    </span>
+  </a>
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
+          disabled={false}
+          fullWidth={false}
+          label="Cancel"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={true}
+          secondary={false}
+      />,
+        <FlatButton
+          disabled={false}
+          fullWidth={false}
+          keyboardFocused={true}
+          label="Submit"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onClick={[Function]}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          primary={true}
+          secondary={false}
+      />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    modal={false}
+    onRequestClose={[Function]}
+    open={false}
+    repositionOnUpdate={true}
+    title="New Recipe"
+  >
+    <div>
+      <form
+        action=""
+        id="recipe-form"
+        method="POST"
+      >
+        <div
+          className="error"
+        />
+        <div>
+          <TextField
+            disabled={false}
+            floatingLabelFixed={false}
+            fullWidth={false}
+            hintText="Name"
+            multiLine={false}
+            name="name"
+            onChange={[Function]}
+            rows={1}
+            type="text"
+            underlineShow={true}
+          />
+        </div>
+        <div>
+          <TextField
+            disabled={false}
+            floatingLabelFixed={false}
+            fullWidth={false}
+            hintText="Description"
+            multiLine={false}
+            name="description"
+            onChange={[Function]}
+            rows={1}
+            type="Description"
+            underlineShow={true}
+          />
+        </div>
+      </form>
+    </div>
+  </Dialog>
+</div>
+`;

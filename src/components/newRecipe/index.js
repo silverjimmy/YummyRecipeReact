@@ -138,7 +138,7 @@ class NewRecipe extends Component {
           onRequestClose={this.handleClose}
         >
           <div>
-              <form method="POST" action="">
+              <form method="POST" action="" id="recipe-form">
                 <div className="error">
                </div>
                 <div>
