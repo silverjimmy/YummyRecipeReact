@@ -160,6 +160,7 @@ class EditRecipe extends Component {
           <form method="POST" action="">
             <div>
               <TextField
+                  id="name"
                   name="name"
                   value ={this.state.name}
                   hintText="name"
@@ -167,6 +168,7 @@ class EditRecipe extends Component {
             </div>
             <div>
               <TextField
+                  id="description"
                   type="Description"
                   name="description"
                   value={this.state.description}

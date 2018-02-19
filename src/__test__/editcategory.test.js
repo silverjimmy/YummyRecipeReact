@@ -24,6 +24,7 @@ const setUp = () => {
 
 
 describe('recipeDisplay', () => {
+    const wrapper = shallow( <Editcategory /> );
     const props = {
         match
     };
@@ -43,6 +44,12 @@ describe('recipeDisplay', () => {
         it('renders five div jsx elements', () => {
             const wrapper = shallow( <Editcategory /> );
         expect(wrapper.find("div")).toHaveLength(3);        
+            });
+            it('should render <form> without throwing an error', () => {
+                expect(wrapper.exists(<form/>)).toBe(true)
+            });
+            it('should render <div> without throwing an error', () => {
+                expect(wrapper.exists(<span />))
             });
     
 })

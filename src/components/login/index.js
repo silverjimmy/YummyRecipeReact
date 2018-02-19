@@ -90,8 +90,9 @@ class Login extends Component {
               open: true
             })
           }
-      }).catch((err) => {
-          console.error(err)
+      })
+      .catch(e=>{
+        
       })
     }
 
@@ -115,7 +116,7 @@ class Login extends Component {
                   <h2> Yummy Recipes </h2>
                   <div className="content">
                     <h4> Sign In</h4>
-                      <form method="POST" action="">
+                      <form method="POST" action="" id="login_form">
                         <div className="error">
 
                           <Dialog
@@ -129,12 +130,14 @@ class Login extends Component {
                        </div>
                         <div>
                           <TextField
+                              id="username"
                               name="username"
                               hintText="username"
                               onChange={this.handleNameChange} />
                         </div>
                         <div>
                           <TextField
+                              id="password"
                               type="password"
                               name="password"
                               hintText="password"
