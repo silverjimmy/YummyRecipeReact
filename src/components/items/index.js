@@ -6,6 +6,7 @@ import NewRecipe from '../newRecipe';
 import DeleteCategory from '../deleteCategory'
 import Editcategory from "../editcategory";
 import swal from 'sweetalert';
+import DataTable, { destroyDataTable} from "../items/recipes"
 
 class Items extends Component{
   constructor(props){
@@ -61,6 +62,14 @@ class Items extends Component{
         console.error(err)
       })
 
+  }
+
+  componentWillUpdate() {
+    destroyDataTable(".recipes");
+  }
+
+  componentDidUpdate() {
+      DataTable(".recipes");
   }
 
   render(){
