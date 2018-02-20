@@ -1,36 +1,33 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {notify} from 'react-notify-toast';
+import { notify } from 'react-notify-toast';
 
 // enabling
 injectTapEventPlugin();
 
 configure({ adapter: new Adapter() });
 
-
-
 class LocalStorageMock {
     constructor() {
-      this.store = {};
+        this.store = {};
     }
-  
+
     clear() {
-      this.store = {};
+        this.store = {};
     }
-  
+
     getItem(key) {
-      return this.store[key] || null;
+        return this.store[key] || null;
     }
-  
+
     setItem(key, value) {
-      this.store[key] = value.toString();
+        this.store[key] = value.toString();
     }
-  
+
     removeItem(key) {
-      delete this.store[key];
+        delete this.store[key];
     }
-  }
-  
-  
-  global.localStorage = new LocalStorageMock;
+}
+
+global.localStorage = new LocalStorageMock();
