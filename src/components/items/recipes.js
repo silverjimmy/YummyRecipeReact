@@ -1,12 +1,13 @@
-import jQuery from "jquery";
-jQuery.DataTable = require("datatables.net");
+import jQuery from 'jquery';
+
+jQuery.DataTable = require('datatables.net');
 
 export default function (selector) {
     if (elementIsDatatable(selector)) {
         destroyDataTable(selector);
     }
     jQuery(selector).DataTable({
-        "info": false,
+        info: false,
         // "lengthChange": false,
     });
 }
@@ -15,6 +16,8 @@ function elementIsDatatable(selector) {
 }
 export function destroyDataTable(selector) {
     if (elementIsDatatable(selector)) {
-        jQuery(selector).DataTable().destroy();
+        jQuery(selector)
+            .DataTable()
+            .destroy();
     }
 }
