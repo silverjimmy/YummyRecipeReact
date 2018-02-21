@@ -45,7 +45,7 @@ class Items extends Component {
         console.log('I\'m called');
         const _this = this;
         const category_id = this.props.params.id;
-        const url = `http://127.0.0.1:5000/category/${category_id}`;
+        const url = `https://yummyrecipereactv1.herokuapp.com/category/${category_id}`;
         fetch(url, {
             method: 'GET',
             mode: 'cors',

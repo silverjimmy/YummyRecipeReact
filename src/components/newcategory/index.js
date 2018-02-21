@@ -65,7 +65,7 @@ class NewCategory extends Component {
 
     addcategory() {
         const _this = this;
-        const url = 'http://127.0.0.1:5000/category/';
+        const url = 'https://yummyrecipereactv1.herokuapp.com/category/';
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(this.state),

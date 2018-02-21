@@ -75,7 +75,7 @@ class Editcategory extends Component {
 
     componentDidMount() {
         const _this = this;
-        const url = `http://127.0.0.1:5000/category/${this.props.category_id}`;
+        const url = `https://yummyrecipereactv1.herokuapp.com/category/${this.props.category_id}`;
         fetch(url, {
             method: 'GET',
             mode: 'cors',
@@ -99,7 +99,7 @@ class Editcategory extends Component {
     // make request to the api
     updatecategory(category_id) {
         const _this = this;
-        const url = `http://127.0.0.1:5000/category/${category_id}`;
+        const url = `https://yummyrecipereactv1.herokuapp.com/category/${category_id}`;
         fetch(url, {
             method: 'PUT',
             body: JSON.stringify(this.state),
