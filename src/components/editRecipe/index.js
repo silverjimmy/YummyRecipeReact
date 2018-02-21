@@ -75,7 +75,7 @@ class EditRecipe extends Component {
 
     componentDidMount() {
         const _this = this;
-        const url = `https://yummyrecipereactv1.herokuapp.com/category/${
+        const url = `https://yummy-recipev2.herokuapp.com//category/${
             this.props.category_id
         }/recipe/${this.props.item_id}`;
         fetch(url, {
@@ -102,7 +102,7 @@ class EditRecipe extends Component {
     updaterecipe = (category_id, item_id) => {
         this.setState({ recipeId: item_id, categoryId: category_id });
         const _this = this;
-        const url = `https://yummyrecipereactv1.herokuapp.com/category/${category_id}/recipe/${item_id}`;
+        const url = `https://yummy-recipev2.herokuapp.com//category/${category_id}/recipe/${item_id}`;
         fetch(url, {
             method: 'PUT',
             body: JSON.stringify(this.state),

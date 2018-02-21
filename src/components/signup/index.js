@@ -46,7 +46,7 @@ class SignUp extends Component {
     // make request to the api
     signup() {
         const _this = this;
-        const url = 'https://yummyrecipereactv1.herokuapp.com/auth/register';
+        const url = 'https://yummy-recipev2.herokuapp.com//auth/register';
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(this.state),

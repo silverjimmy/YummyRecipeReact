@@ -83,7 +83,7 @@ class Dashboard extends Component {
             return;
         }
 
-        const url = `https://yummyrecipereactv1.herokuapp.com/category/?limit=3&q=${searchValue}&page=${
+        const url = `https://yummy-recipev2.herokuapp.com//category/?limit=3&q=${searchValue}&page=${
             _this.state.page
         }`;
         fetch(url, {
@@ -110,7 +110,7 @@ class Dashboard extends Component {
     fetchCategory() {
         const _this = this;
 
-        const url = `https://yummyrecipereactv1.herokuapp.com/category/?limit=3&page=${
+        const url = `https://yummy-recipev2.herokuapp.com//category/?limit=3&page=${
             _this.state.page
         }`;
         fetch(url, {

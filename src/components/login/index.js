@@ -54,13 +54,13 @@ class Login extends Component {
         }
         // make request to the api
         const _this = this;
-        const url = 'https://yummyrecipereactv1.herokuapp.com/auth/login';
+        const url = 'https://yummy-recipev2.herokuapp.com//auth/login';
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(this.state),
             mode: 'cors',
             headers: new Headers({
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             }),
         })
             .then(resp => resp.json()) // Transform the data into json

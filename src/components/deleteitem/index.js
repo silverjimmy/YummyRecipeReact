@@ -65,7 +65,7 @@ class DeleteItem extends Component {
     deletecategory = (category_id, item_id) => {
         console.log('deletiing');
         const _this = this;
-        const url = `https://yummyrecipereactv1.herokuapp.com/category/${category_id}/recipe/${item_id}`;
+        const url = `https://yummy-recipev2.herokuapp.com//category/${category_id}/recipe/${item_id}`;
         fetch(url, {
             method: 'DELETE',
             mode: 'cors',
