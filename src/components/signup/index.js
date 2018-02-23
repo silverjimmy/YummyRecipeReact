@@ -46,7 +46,7 @@ class SignUp extends Component {
     // make request to the api
     signup() {
         const _this = this;
-        const url = 'http://127.0.0.1:5000/auth/register';
+        const url = 'https://yummy-recipev2.herokuapp.com/auth/register';
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -69,7 +69,7 @@ class SignUp extends Component {
                         error: data.message,
                         open: true,
                     });
-                    browserHistory.push({ pathname: '/dashboard' });
+                    browserHistory.push({ pathname: '/login' });
                     // store token in the browser localStorage
 
                     if (typeof localStorage !== undefined) {

@@ -61,7 +61,7 @@ class Login extends Component {
             mode: 'cors',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('yummy_token'),
+                
             }),
         })
             .then(resp => resp.json()) // Transform the data into json
