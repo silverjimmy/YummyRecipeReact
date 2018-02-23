@@ -58,7 +58,7 @@ class DeleteCategory extends Component {
     // make request to the api
     deletecategory(category_id) {
         const _this = this;
-        const url = `https://yummy-recipev2.herokuapp.com//category/${category_id}`;
+        const url = `http://127.0.0.1:5000/category/${category_id}`;
         fetch(url, {
             method: 'DELETE',
             mode: 'cors',

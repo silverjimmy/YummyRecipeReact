@@ -70,7 +70,7 @@ class NewRecipe extends Component {
     addcategory = () => {
         const _this = this;
         const category_id = this.props.category_id;
-        const url = `https://yummy-recipev2.herokuapp.com//category/${category_id}/recipe/`;
+        const url = `http://127.0.0.1:5000/category/${category_id}/recipe/`;
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(this.state),
